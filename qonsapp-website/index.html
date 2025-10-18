@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QOnsApp - AI-Powered Operations Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'SF Pro', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 32px;
+            font-weight: 700;
+            text-decoration: none;
+            color: #1a1a1a;
+            letter-spacing: -2px;
+        }
+        
+        .logo-q {
+            color: #2B7DE9;
+        }
+        
+        .logo-o {
+            color: #8B5CF6;
+        }
+        
+        .logo-text {
+            letter-spacing: -1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #8B5CF6;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #2B7DE9 0%, #8B5CF6 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #2B7DE9;
+            padding: 12px 30px;
+            border: 2px solid #2B7DE9;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-secondary:hover {
+            background: #2B7DE9;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f8f9ff 0%, #fff 50%, #faf8ff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(43, 125, 233, 0.1) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            border-radius: 50%;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            bottom: -150px;
+            left: -150px;
+            border-radius: 50%;
+        }
+        
+        .hero .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-content .tagline {
+            font-size: 1.2rem;
+            color: #8B5CF6;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            color: #4a5568;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .hero-image {
+            position: relative;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+        
+        /* Stats Bar */
+        .stats-bar {
+            background: linear-gradient(135deg, #2B7DE9 0%, #8B5CF6 100%);
+            padding: 40px 20px;
+            color: white;
+        }
+        
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        
+        .stat-item p {
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+        
+        /* Problem Section */
+        .problem-section {
+            padding: 100px 20px;
+            background: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 60px;
+            color: #1a1a1a;
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+        
+        .problem-card {
+            background: #f8f9ff;
+            padding: 40px;
+            border-radius: 20px;
+            border-left: 5px solid #ef4444;
+        }
+        
+        .problem-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+        
+        .problem-card p {
+            color: #4a5568;
+            font-size: 1.1rem;
+        }
+        
+        /* Solution Section */
+        .solution-section {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #faf8ff 100%);
+        }
+        
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .solution-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .solution-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.2);
+        }
+        
+        .solution-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .solution-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+        
+        .solution-card p {
+            color: #4a5568;
+            font-size: 1.1rem;
+        }
+        
+        /* Features Section */
+        .features-section {
+            padding: 100px 20px;
+            background: white;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            margin-top: 60px;
+        }
+        
+        .feature-item {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+        
+        .feature-screenshot {
+            width: 250px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            flex-shrink: 0;
+        }
+        
+        .feature-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+        
+        .feature-content p {
+            color: #4a5568;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        /* Pricing Section */
+        .pricing-section {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #faf8ff 100%);
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .pricing-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.2);
+        }
+        
+        .pricing-card.popular {
+            border: 3px solid #8B5CF6;
+            transform: scale(1.05);
+        }
+        
+        .pricing-badge {
+            background: linear-gradient(135deg, #2B7DE9 0%, #8B5CF6 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+        
+        .pricing-card .price {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 30px;
+        }
+        
+        .pricing-card ul {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .pricing-card ul li {
+            padding: 10px 0;
+            color: #4a5568;
+            font-size: 1rem;
+        }
+        
+        .pricing-card ul li::before {
+            content: "✓";
+            color: #10B981;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        /* About Section */
+        .about-section {
+            padding: 100px 20px;
+            background: white;
+        }
+        
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .founder-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            margin-bottom: 30px;
+        }
+        
+        .about-content p {
+            font-size: 1.3rem;
+            color: #4a5568;
+            line-height: 1.9;
+            margin-bottom: 30px;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #2B7DE9 0%, #8B5CF6 100%);
+            color: white;
+        }
+        
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .contact-container h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .contact-container p {
+            text-align: center;
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+            opacity: 0.95;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #8B5CF6;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        .submit-button {
+            background: linear-gradient(135deg, #2B7DE9 0%, #8B5CF6 100%);
+            color: white;
+            padding: 18px 50px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 20px 30px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-brand {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -2px;
+        }
+        
+        .footer-brand .logo-q {
+            color: #2B7DE9;
+        }
+        
+        .footer-brand .logo-o {
+            color: #8B5CF6;
+        }
+        
+        .footer-brand .logo-text {
+            color: white;
+            letter-spacing: -1px;
+        }
+        
+        .footer-tagline {
+            color: rgba(255,255,255,0.6);
+            font-style: italic;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-section ul li a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section ul li a:hover {
+            color: #8B5CF6;
+        }
+        
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .problem-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .solution-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">
+                <span class="logo-q">Q</span><span class="logo-o">O</span><span class="logo-text">nsApp</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact" class="btn-primary">Request Demo</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <p class="tagline">Where Service Meets Technology</p>
+                <h1>AI-Powered Operations Platform for Concierge & Property Management Companies</h1>
+                <p class="subtitle">Manage unlimited properties, automate scheduling, scale without chaos</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-primary">Request Demo</a>
+                    <a href="#features" class="btn-secondary">See How It Works</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/Admindashboard.jpeg" alt="QOnsApp Dashboard - Concierge Management Platform" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <h3>1,340%</h3>
+                <p>Average ROI</p>
+            </div>
+            <div class="stat-item">
+                <h3>96%</h3>
+                <p>Less Scheduling Time</p>
+            </div>
+            <div class="stat-item">
+                <h3>47+</h3>
+                <p>Buildings Managed</p>
+            </div>
+            <div class="stat-item">
+                <h3>150+</h3>
+                <p>Staff Coordinated</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <h2 class="section-title">The Challenges You Face Every Day</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>❌ Manual Scheduling Chaos</h3>
+                    <p>Spending 30+ hours per week juggling schedules across multiple properties with endless phone calls and spreadsheets</p>
+                </div>
+                <div class="problem-card">
+                    <h3>❌ Last-Minute Coverage Scrambles</h3>
+                    <p>Emergency call-outs forcing you to frantically find replacements, often paying premium overtime rates</p>
+                </div>
+                <div class="problem-card">
+                    <h3>❌ Zero Operational Visibility</h3>
+                    <p>No real-time insight into staff performance, building operations, or client satisfaction metrics</p>
+                </div>
+                <div class="problem-card">
+                    <h3>❌ Unable to Scale</h3>
+                    <p>Current systems break down beyond 10-15 properties, preventing profitable growth</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution-section">
+        <div class="container">
+            <h2 class="section-title">QOnsApp Automates Your Entire Operation</h2>
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="solution-icon">🤖</div>
+                    <h3>AI-Powered Scheduling</h3>
+                    <p>Intelligent algorithms match staff to properties based on skills, location, and availability in seconds</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">📊</div>
+                    <h3>Real-Time Analytics</h3>
+                    <p>Live dashboards showing performance metrics, utilization rates, and ROI that impresses clients</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">📱</div>
+                    <h3>Mobile-First Platform</h3>
+                    <p>Your field teams stay connected with instant updates, time tracking, and task management</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">🏢</div>
+                    <h3>Multi-Property Management</h3>
+                    <p>Manage 50+ properties from one centralized dashboard with complete operational control</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">⚡</div>
+                    <h3>Instant Coverage</h3>
+                    <p>Auto-find qualified replacements in 30 seconds when emergencies happen</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">📈</div>
+                    <h3>Client Reporting</h3>
+                    <p>Professional reports that justify your value and win contract renewals</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2 class="section-title">Powerful Features Built for Scale</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <img src="images/Liveshiftmanagement.jpeg" alt="Smart Shift Management" class="feature-screenshot">
+                    <div class="feature-content">
+                        <h3>Smart Shift Management</h3>
+                        <p>Drag-and-drop calendar with AI suggestions, conflict detection, and automatic notifications. Create templates for recurring shifts and bulk schedule entire months.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <img src="images/usermanagement.jpeg" alt="Staff Optimization" class="feature-screenshot">
+                    <div class="feature-content">
+                        <h3>Staff Optimization</h3>
+                        <p>Track certifications, skills, and performance metrics. Smart matching ensures the right person is at the right property every time.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <img src="images/cfodashboard.jpeg" alt="Financial Analytics" class="feature-screenshot">
+                    <div class="feature-content">
+                        <h3>Real-Time Analytics</h3>
+                        <p>Live dashboards showing performance metrics, utilization rates, and ROI. Export reports for payroll and client billing with comprehensive insights.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <img src="images/buildingsmap.jpeg" alt="Building Management" class="feature-screenshot">
+                    <div class="feature-content">
+                        <h3>Multi-Property Management</h3>
+                        <p>Visual map interface to manage unlimited properties from one dashboard. Geographic insights and regional performance tracking at your fingertips.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <img src="images/conciergedash.jpeg" alt="Field Operations" class="feature-screenshot">
+                    <div class="feature-content">
+                        <h3>Mobile-First Platform</h3>
+                        <p>Your field teams stay connected with instant updates, time tracking, and task management. Built for operations on the go.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <img src="images/supervisordash.jpeg" alt="Team Management" class="feature-screenshot">
+                    <div class="feature-content">
+                        <h3>Supervisor Dashboard</h3>
+                        <p>Real-time team oversight with performance monitoring, attendance tracking, and instant communication. Empower your supervisors with actionable insights.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <h2 class="section-title">Simple, Transparent Pricing</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <p class="price">Up to 5 buildings</p>
+                    <ul>
+                        <li>Smart scheduling</li>
+                        <li>Basic analytics</li>
+                        <li>Mobile app access</li>
+                        <li>Email support</li>
+                    </ul>
+                    <a href="#contact" class="btn-primary">Contact Sales</a>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="pricing-badge">MOST POPULAR</div>
+                    <h3>Professional</h3>
+                    <p class="price">Up to 20 buildings</p>
+                    <ul>
+                        <li>All Starter features</li>
+                        <li>Advanced analytics</li>
+                        <li>Client reporting</li>
+                        <li>Priority support</li>
+                        <li>API access</li>
+                    </ul>
+                    <a href="#contact" class="btn-primary">Contact Sales</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <p class="price">Unlimited buildings</p>
+                    <ul>
+                        <li>All Professional features</li>
+                        <li>Custom integrations</li>
+                        <li>Dedicated support</li>
+                        <li>Training included</li>
+                        <li>SLA guarantee</li>
+                    </ul>
+                    <a href="#contact" class="btn-primary">Contact Sales</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Premium</h3>
+                    <p class="price">White-label solution</p>
+                    <ul>
+                        <li>All Enterprise features</li>
+                        <li>Custom branding</li>
+                        <li>Custom features</li>
+                        <li>Dedicated account manager</li>
+                    </ul>
+                    <a href="#contact" class="btn-primary">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">About QOnsApp</h2>
+            <div class="about-content">
+                <img src="images/founderimage.jpeg" alt="Ernest Nana Dompreh-Owusu" class="founder-photo">
+                <p>QOnsApp was built to solve the operational chaos that prevents concierge and property management companies from scaling.</p>
+                <p>Our AI-powered platform automates scheduling, optimizes workforce management, and delivers measurable ROI—letting great service companies focus on what they do best: exceptional service.</p>
+                <p>From managing 5 properties to 50+, QOnsApp scales with your business, providing the tools and insights you need to grow profitably.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <h2>Ready to Transform Your Operations?</h2>
+            <p>Schedule a demo and see how QOnsApp can deliver 1,340% ROI for your business</p>
+            
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="company">Company Name *</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                
+                <div class="form-group">
+                    <label for="company-type">Company Type *</label>
+                    <select id="company-type" name="company-type" required>
+                        <option value="">Select one...</option>
+                        <option value="concierge">Concierge Service Company</option>
+                        <option value="property">Property Management Company</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="properties">Number of Properties</label>
+                    <select id="properties" name="properties">
+                        <option value="">Select range...</option>
+                        <option value="1-5">1-5 properties</option>
+                        <option value="6-20">6-20 properties</option>
+                        <option value="21-50">21-50 properties</option>
+                        <option value="50+">50+ properties</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Tell us about your needs *</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-button">Request Demo</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="footer-brand">
+                    <span class="logo-q">Q</span><span class="logo-o">O</span><span class="logo-text">nsApp</span>
+                </div>
+                <p class="footer-tagline">Where Service Meets Technology</p>
+                <p style="color: rgba(255,255,255,0.7); line-height: 1.8;">
+                    Quantitative On-Schedule Applications - AI-powered operations platform for concierge and property management companies. 
+                    Automate scheduling, optimize operations, and scale without chaos.
+                </p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#contact">Request Demo</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="https://www.linkedin.com/in/ernest-nana-dompreh-owusu-1060b515a" target="_blank">LinkedIn</a></li>
+                    <li><a href="mailto:contact@qonsapp.com">Email Us</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 QOnsApp. All rights reserved. | Where Service Meets Technology</p>
+        </div>
+    </footer>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const formData = new FormData(form);
+            
+            const name = formData.get('name');
+            const company = formData.get('company');
+            const email = formData.get('email');
+            const phone = formData.get('phone');
+            const companyType = formData.get('company-type');
+            const properties = formData.get('properties');
+            const message = formData.get('message');
+            
+            const emailBody = `
+New Demo Request from QOnsApp Website
+
+Name: ${name}
+Company: ${company}
+Email: ${email}
+Phone: ${phone || 'Not provided'}
+Company Type: ${companyType}
+Number of Properties: ${properties || 'Not specified'}
+
+Message:
+${message}
+            `.trim();
+            
+            const mailtoLink = `mailto:contact@qonsapp.com?subject=Demo Request: ${encodeURIComponent(company)}&body=${encodeURIComponent(emailBody)}`;
+            
+            window.location.href = mailtoLink;
+            
+            alert('Thank you for your interest! Your email client should open. If not, please email us directly at contact@qonsapp.com');
+            
+            form.reset();
+        }
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
