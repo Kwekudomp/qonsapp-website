@@ -353,6 +353,103 @@
             font-size: 1.1rem;
             line-height: 1.8;
         }
+
+        /* AI Intelligence Section */
+        .ai-intelligence-section {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-intelligence-section::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            border-radius: 50%;
+        }
+
+        .badge-coming-soon {
+            display: inline-block;
+            background: linear-gradient(135deg, #2B7DE9 0%, #8B5CF6 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .ai-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ai-content h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .ai-content .subtitle {
+            font-size: 1.3rem;
+            color: #4a5568;
+            margin-bottom: 60px;
+        }
+
+        .ai-features-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .preview-item {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .preview-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.2);
+        }
+
+        .preview-item .icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .preview-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+
+        .preview-item p {
+            color: #4a5568;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .availability {
+            font-size: 1.1rem;
+            color: #8B5CF6;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
         
         /* Pricing Section */
         .pricing-section {
@@ -426,6 +523,15 @@
             color: #10B981;
             font-weight: bold;
             margin-right: 10px;
+        }
+
+        .pricing-card ul li.coming-soon {
+            color: #8B5CF6;
+            font-weight: 600;
+        }
+
+        .pricing-card ul li.coming-soon::before {
+            content: "🆕";
         }
         
         /* About Section */
@@ -638,7 +744,8 @@
                 grid-template-columns: 1fr;
             }
             
-            .solution-grid {
+            .solution-grid,
+            .ai-features-preview {
                 grid-template-columns: 1fr;
             }
             
@@ -785,7 +892,7 @@
                     <img src="images/Liveshiftmanagement.jpeg" alt="Smart Shift Management" class="feature-screenshot">
                     <div class="feature-content">
                         <h3>Smart Shift Management</h3>
-                        <p>Drag-and-drop calendar with AI suggestions, conflict detection, and automatic notifications. Create templates for recurring shifts and bulk schedule entire months.</p>
+                        <p>Drag and drop calendar with AI suggestions, conflict detection, and automatic notifications. Create templates for recurring shifts and bulk schedule entire months.</p>
                     </div>
                 </div>
                 <div class="feature-item">
@@ -823,6 +930,45 @@
                         <p>Real-time team oversight with performance monitoring, attendance tracking, and instant communication. Empower your supervisors with actionable insights.</p>
                     </div>
                 </div>
+                <div class="feature-item">
+                    <img src="images/payrollintegration.jpeg" alt="Payroll Integration" class="feature-screenshot">
+                    <div class="feature-content">
+                        <h3>Seamless Payroll Integration</h3>
+                        <p>Direct integration with major payroll systems including ADP, Paychex, and QuickBooks. Export timesheet data, process payroll, and download detailed reports with one click—eliminating manual data entry and reducing payroll processing time by 80%.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Intelligence Section -->
+    <section class="ai-intelligence-section">
+        <div class="container">
+            <div class="ai-content">
+                <span class="badge-coming-soon">COMING Q2 2025</span>
+                <h2>AI-Powered Strategic Intelligence</h2>
+                <p class="subtitle">Transform Every Interaction Into Actionable Insights</p>
+                
+                <div class="ai-features-preview">
+                    <div class="preview-item">
+                        <span class="icon">📊</span>
+                        <h3>Word Cloud Analytics</h3>
+                        <p>Visualize interaction themes in real time across buildings, regions, and your entire portfolio</p>
+                    </div>
+                    <div class="preview-item">
+                        <span class="icon">😊</span>
+                        <h3>Sentiment Analysis</h3>
+                        <p>Track resident satisfaction trends and identify issues before they escalate</p>
+                    </div>
+                    <div class="preview-item">
+                        <span class="icon">🔮</span>
+                        <h3>Predictive Insights</h3>
+                        <p>AI generated recommendations for maintenance, staffing, and operational optimization</p>
+                    </div>
+                </div>
+                
+                <p class="availability">Available in Enterprise & Premium tiers</p>
+                <a href="#contact" class="btn-secondary">Join Beta Waitlist</a>
             </div>
         </div>
     </section>
@@ -853,6 +999,7 @@
                         <li>Client reporting</li>
                         <li>Priority support</li>
                         <li>API access</li>
+                        <li class="coming-soon">AI Insights (Coming Soon)</li>
                     </ul>
                     <a href="#contact" class="btn-primary">Contact Sales</a>
                 </div>
@@ -865,6 +1012,7 @@
                         <li>Dedicated support</li>
                         <li>Training included</li>
                         <li>SLA guarantee</li>
+                        <li class="coming-soon">Advanced AI Analytics</li>
                     </ul>
                     <a href="#contact" class="btn-primary">Contact Sales</a>
                 </div>
@@ -876,6 +1024,7 @@
                         <li>Custom branding</li>
                         <li>Custom features</li>
                         <li>Dedicated account manager</li>
+                        <li class="coming-soon">Full AI Intelligence Suite</li>
                     </ul>
                     <a href="#contact" class="btn-primary">Contact Sales</a>
                 </div>
@@ -890,7 +1039,7 @@
             <div class="about-content">
                 <img src="images/founderimage.jpg" alt="Ernest Nana Dompreh-Owusu" class="founder-photo">
                 <p>QOnsApp was built to solve the operational chaos that prevents concierge and property management companies from scaling.</p>
-                <p>Our AI-powered platform automates scheduling, optimizes workforce management, and delivers measurable ROI—letting great service companies focus on what they do best: exceptional service.</p>
+                <p>Our AI powered platform automates scheduling, optimizes workforce management, and delivers measurable ROI—letting great service companies focus on what they do best: exceptional service.</p>
                 <p>From managing 5 properties to 50+, QOnsApp scales with your business, providing the tools and insights you need to grow profitably.</p>
             </div>
         </div>
@@ -963,7 +1112,7 @@
                 </div>
                 <p class="footer-tagline">Where Service Meets Technology</p>
                 <p style="color: rgba(255,255,255,0.7); line-height: 1.8;">
-                    Quantitative On-Schedule Applications - AI-powered operations platform for concierge and property management companies. 
+                    Quantitative On-Schedule Applications - AI powered operations platform for concierge and property management companies. 
                     Automate scheduling, optimize operations, and scale without chaos.
                 </p>
             </div>
@@ -989,7 +1138,7 @@
                 <h4>Connect</h4>
                 <ul>
                     <li><a href="https://www.linkedin.com/in/ernest-nana-dompreh-owusu-1060b515a" target="_blank">LinkedIn</a></li>
-                    <li><a href="mailto:hello@qonsapp.com">Email Us</a></li>
+                    <li><a href="mailto:contact@qonsapp.com">Email Us</a></li>
                 </ul>
             </div>
         </div>
@@ -1052,4 +1201,4 @@ ${message}
         });
     </script>
 </body>
-</html> 
+</html>
