@@ -79,6 +79,46 @@
         .nav-links a:hover {
             color: #8B5CF6;
         }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 5px;
+            color: #1a1a1a;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 20px;
+            z-index: 999;
+        }
+
+        .mobile-nav.active {
+            display: block;
+        }
+
+        .mobile-nav a {
+            display: block;
+            padding: 15px;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .mobile-nav a:hover {
+            background: #f8f9ff;
+            color: #8B5CF6;
+        }
         
         .btn-primary {
             background: linear-gradient(135deg, #2B7DE9 0%, #8B5CF6 100%);
@@ -124,6 +164,13 @@
             position: relative;
             overflow: hidden;
         }
+
+        @media (max-width: 968px) {
+            .hero {
+                min-height: auto;
+                padding: 40px 0;
+            }
+        }
         
         .hero::before {
             content: '';
@@ -161,6 +208,12 @@
         
         .hero-content {
             padding-top: 40px;
+        }
+
+        @media (max-width: 968px) {
+            .hero-content {
+                padding-top: 20px;
+            }
         }
 
         .crisis-callout {
@@ -814,14 +867,43 @@
             .hero .container {
                 grid-template-columns: 1fr;
                 text-align: center;
+                padding: 40px 20px;
+                gap: 30px;
             }
             
             .hero-content h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
+                line-height: 1.3;
+            }
+
+            .hero-content .tagline {
+                font-size: 1rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .hero-image img {
+                max-width: 100%;
+                height: auto;
             }
             
             .stats-container {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .stat-item h3 {
+                font-size: 2rem;
             }
             
             .problem-grid,
@@ -845,6 +927,10 @@
             .nav-links {
                 display: none;
             }
+
+            .mobile-menu-btn {
+                display: block;
+            }
             
             .crisis-callout {
                 min-height: auto;
@@ -854,11 +940,43 @@
             
             .crisis-callout h3 {
                 font-size: 1rem;
+                margin-bottom: 20px;
             }
             
             .crisis-stat {
                 font-size: 0.9rem;
-                margin-bottom: 20px;
+                margin-bottom: 15px;
+                gap: 10px;
+            }
+
+            .crisis-stat .icon {
+                font-size: 1.2rem;
+            }
+
+            .divider {
+                margin: 20px 0;
+            }
+
+            .solution-highlight {
+                padding: 15px 20px;
+                margin-top: 20px;
+            }
+
+            .solution-highlight p {
+                font-size: 0.9rem;
+            }
+
+            .feature-item {
+                flex-direction: column;
+            }
+
+            .feature-screenshot {
+                width: 100%;
+                height: auto;
+            }
+
+            .contact-form {
+                padding: 30px 20px;
             }
         }
     </style>
@@ -876,6 +994,13 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact" class="btn-primary">Request Demo</a></li>
             </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <a href="#features" onclick="toggleMobileMenu()">Features</a>
+            <a href="#pricing" onclick="toggleMobileMenu()">Pricing</a>
+            <a href="#about" onclick="toggleMobileMenu()">About</a>
+            <a href="#contact" onclick="toggleMobileMenu()">Request Demo</a>
         </div>
     </nav>
 
@@ -1298,6 +1423,11 @@
     </footer>
 
     <script>
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('active');
+        }
+
         function handleSubmit(event) {
             event.preventDefault();
             
